@@ -427,3 +427,37 @@ footer small {
     padding-left: 0;
   }
 }
+body {
+  transition: background .4s ease, color .4s ease;
+}
+
+.theme-toggle {
+  margin-left: 12px;
+}
+
+.theme-toggle button {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--cream);
+  padding: 11px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+body.light-theme {
+  --bg: #f4eedf;
+  --panel: #fffaf0;
+  --cream: #252a35;
+  --muted: #716b61;
+  --line: rgba(130,100,55,.25);
+}
+
+body.light-theme .hero-art {
+  background: radial-gradient(ellipse at center,#fffaf0,#e8dfcd);
+}
+
+body.light-theme .share,
+body.light-theme .theme-toggle button {
+  color: var(--cream);
+}
