@@ -80,7 +80,7 @@ document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
 
   </div>
 </section>
-<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address" id="address">
+<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section"${aboutSection}>')}<section class="section address" id="address">
   <div class="section-head">
     <p class="eyebrow">OUR LOCATION</p>
     <h2>Visit Our Showroom</h2>
