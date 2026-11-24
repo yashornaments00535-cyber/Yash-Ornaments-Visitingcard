@@ -146,3 +146,36 @@ const sectionObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('#home, #contacts, #gallery').forEach(section => {
   sectionObserver.observe(section);
 });
+
+/* SMART JEWELLERY VIDEO */
+const heroVideo = document.querySelector('#heroProductVideo');
+
+if (heroVideo) {
+  const playVideo = () => heroVideo.play().catch(() => {});
+
+  // Mouse hover
+  heroVideo.addEventListener('mouseenter', playVideo);
+  heroVideo.addEventListener('mouseleave', () => heroVideo.pause());
+
+  // Mobile touch
+  heroVideo.addEventListener('click', () => {
+    if (heroVideo.paused) {
+      playVideo();
+    } else {
+      heroVideo.pause();
+    }
+  });
+
+  // Play when video section enters the screen
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        playVideo();
+      } else {
+        heroVideo.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videoObserver.observe(heroVideo);
+}
