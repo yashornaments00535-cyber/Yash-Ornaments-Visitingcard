@@ -17,6 +17,12 @@ export const card = {
   ],
   // Add your images to public/gallery and list their filenames here.
   gallery: [
-    // 'necklace-01.jpg', 'ring-01.jpg', 'pendant-01.jpg'
-  ]
+  'Whole Set Rose Gold-01.jpeg',
+  'Exclusive Ring-01.jpeg',
+  "Men's Bracelet-01.jpeg",
+  "Men's Lock Kada-01.jpeg",
+  "Men's Kada-02.jpeg",
+  'Laxmiji Kada-03.jpeg',
+  'Hanumanji Pendant-01.jpeg'
+]
 };
