@@ -6,6 +6,21 @@ const contactCards = card.contacts.map((c,i)=>{
   const p=phone(c.phone), w=phone(c.whatsapp||c.phone);
   return `<article class="contact-card"><div class="contact-icon">${['♙','✦','↗','▧'][i%4]}</div><div class="contact-info"><h3>${c.title}</h3><p>${c.subtitle||''}</p>${p?`<p class="number">${c.phone}</p>`:''}</div><div class="actions">${p?`<a class="button button-outline" href="tel:${p}">Call</a>`:''}${w?`<a class="button button-gold" target="_blank" rel="noreferrer" href="https://wa.me/${w}">WhatsApp</a>`:''}<span class="placeholder">${p?'':'Add number in src/data.js'}</span></div></article>`;
 }).join('');
+const aboutSection = `
+<section class="section about-section" id="about">
+  <div class="about-layout">
+    <div class="about-heading">
+      <p class="eyebrow">OUR STORY</p>
+      <h2>About Yash Ornaments</h2>
+      <p class="about-highlight">Defining Modern Luxury</p>
+    </div>
+    <div class="about-content">
+      <p>At Yash Ornaments, every creation reflects the beauty of fine craftsmanship and timeless elegance.</p>
+      <p>With a passion for jewellery and attention to detail, we bring thoughtfully crafted designs to life.</p>
+    </div>
+  </div>
+</section>
+`;
 const gallery = card.gallery.length
   ? `<section class="section gallery-section" id="gallery">
       <div class="section-head">
