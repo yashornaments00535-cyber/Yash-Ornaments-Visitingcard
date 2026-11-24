@@ -122,3 +122,22 @@ nav.innerHTML = `
   <a href="#gallery">▧<span>Gallery</span></a>
 `;
 document.body.appendChild(nav);
+/* ACTIVE MOBILE NAVIGATION */
+const navLinks = document.querySelectorAll('.mobile-nav a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.toggle(
+          'active',
+          link.getAttribute('href') === `#${entry.target.id}`
+        );
+      });
+    }
+  });
+}, { threshold: 0.4 });
+
+document.querySelectorAll('#home, #contacts, #gallery').forEach(section => {
+  sectionObserver.observe(section);
+});
