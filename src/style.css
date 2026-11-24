@@ -939,3 +939,42 @@ body.light-theme .mobile-nav a {
 body {
   padding-bottom: 75px;
 }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 25px;
+}
+
+section {
+  scroll-margin-top: 25px;
+}
+.mobile-nav a {
+  transition: color .3s ease, transform .3s ease;
+}
+
+.mobile-nav a:active {
+  transform: scale(.92);
+}
+
+.mobile-nav a:hover {
+  color: var(--gold);
+}
+@media (max-width: 600px) {
+  .contacts {
+    padding: 35px 16px 45px !important;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .contact-card .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+}
