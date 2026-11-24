@@ -723,3 +723,63 @@ body.light-theme .hero-art {
 body:not(.light-theme) .hero-art {
   background: radial-gradient(circle, #263957, #101b32);
 }
+/* MOBILE-FIRST LUXURY DESIGN */
+@media (max-width: 600px) {
+  .top {
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .brandmark {
+    max-width: 90px;
+  }
+
+  .brand {
+    font-size: 23px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 38px 18px;
+  }
+
+  .hero-copy {
+    text-align: center;
+    margin: auto;
+  }
+
+  .hero-copy .eyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(38px, 11vw, 52px);
+    line-height: 1.08;
+  }
+
+  .hero-copy .desc {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-signature {
+    text-align: center;
+  }
+
+  .hero-art {
+    min-height: 290px;
+    width: 100%;
+  }
+
+  .art-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+}
