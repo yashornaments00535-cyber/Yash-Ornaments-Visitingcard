@@ -42,7 +42,7 @@ intro.innerHTML = `
 document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
   <button id="themeToggle" type="button">☀ Light Mode</button>
 </div><header class="top"><div class="brandmark"><img src="/images/Logo.png" alt="Yash Ornaments Logo"></div><div><div class="brand">${card.brand}</div><div class="tagline">${card.tagline}</div></div><button id="share" class="share">Share ↗</button></header>
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-copy">
     <p class="eyebrow">THE ART OF FINE JEWELLERY</p>
     <h1>${card.headline}</h1>
