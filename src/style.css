@@ -1043,25 +1043,13 @@ section {
   font-display: swap;
 }
 .footer-brand {
-  width: min(100%, 680px);
+  width: 100%;
   margin: 30px auto 15px;
   font-family: 'Bodoni Moda Custom', serif;
   font-style: italic;
   font-weight: 400;
+  font-size: clamp(30px, 7vw, 58px);
+  letter-spacing: 0.06em;
   text-align: center;
-}
-
-.footer-brand-yash {
-  display: block;
-  font-size: clamp(32px, 8vw, 48px);
-  letter-spacing: 0.18em;
-  margin-bottom: 4px;
-}
-
-.footer-brand-ornaments {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: clamp(24px, 6.5vw, 42px);
   white-space: nowrap;
 }
