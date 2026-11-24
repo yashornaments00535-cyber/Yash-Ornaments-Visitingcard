@@ -9,8 +9,8 @@ export const card = {
   address: '1400, Deyadi ni Pole, Near Bala Hanumanji Temple, Astodia Road, Manekchowk, Ahmedabad – 380001',
   mapUrl: 'https://maps.google.com/?q=Yash+Ornaments+Manekchowk+Ahmedabad',
   instagram: 'https://www.instagram.com/',
-  contacts: 
-contacts: [
+  
+  contacts: [
   { title: 'Order Inquiry', subtitle: 'Direct contact', phone: '6355548245', whatsapp: '916355548245' },
   { title: 'Help & Support', subtitle: 'General enquiries & assistance', phone: '9664856004', whatsapp: '919664856004' },
   { title: 'Marketing & Business', subtitle: 'Wholesale and business enquiries', phone: '9265748660', whatsapp: '919265748660' },
