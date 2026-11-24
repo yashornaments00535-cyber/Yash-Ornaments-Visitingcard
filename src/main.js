@@ -15,7 +15,27 @@ intro.innerHTML = `
 `;
 document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
   <button id="themeToggle" type="button">☀ Light Mode</button>
-</div><header class="top"><div class="brandmark"><img src="/images/Logo.png" alt="Yash Ornaments Logo"></div><div><div class="brand">${card.brand}</div><div class="tagline">${card.tagline}</div></div><button id="share" class="share">Share ↗</button></header><section class="hero"><div class="hero-copy"><p class="eyebrow">GOLD JEWELLERY MANUFACTURERS</p><h1>${card.headline}</h1><p class="desc">${card.description}</p><div class="order-note">${card.note}</div><div class="hero-actions"><a href="#contacts" class="button button-gold">Contact Our Team</a><a href="#gallery" class="button button-outline">View Designs</a></div></div><div class="hero-art"><div class="ring" aria-hidden="true"><div class="ring-stone"></div></div><div class="art-label">CRAFTED WITH INTENTION</div></div></section><section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address"><p class="eyebrow">VISIT OUR OFFICE</p><h2>Yash Ornaments</h2><p>${card.address}</p><a class="button button-outline" target="_blank" rel="noreferrer" href="${card.mapUrl}">Get Directions ↗</a></section><footer><div>${card.brand}</div><small>${card.tagline}</small><div class="footer-links"><a href="${card.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a></div><small>Custom & stylish designs • Gold jewellery manufacturing</small></footer></main>`;
+</div><header class="top"><div class="brandmark"><img src="/images/Logo.png" alt="Yash Ornaments Logo"></div><div><div class="brand">${card.brand}</div><div class="tagline">${card.tagline}</div></div><button id="share" class="share">Share ↗</button></header>
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">THE ART OF FINE JEWELLERY</p>
+    <h1>${card.headline}</h1>
+    <p class="desc">${card.description}</p>
+    <div class="order-note">${card.note}</div>
+    <div class="hero-actions">
+      <a href="#gallery" class="button button-gold">Explore Collection</a>
+      <a href="#contacts" class="button button-outline">Connect With Us</a>
+    </div>
+    <p class="hero-signature">YASH ORNAMENTS <span>— DEFINING MODERN LUXURY</span></p>
+  </div>
+  <div class="hero-art">
+    <div class="ring" aria-hidden="true">
+      <div class="ring-stone"></div>
+    </div>
+    <div class="art-label">EXCEPTIONAL CRAFT. TIMELESS BEAUTY.</div>
+  </div>
+</section>
+<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address"><p class="eyebrow">VISIT OUR OFFICE</p><h2>Yash Ornaments</h2><p>${card.address}</p><a class="button button-outline" target="_blank" rel="noreferrer" href="${card.mapUrl}">Get Directions ↗</a></section><footer><div>${card.brand}</div><small>${card.tagline}</small><div class="footer-links"><a href="${card.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a></div><small>Custom & stylish designs • Gold jewellery manufacturing</small></footer></main>`;
 document.body.classList.add('intro-active');
 
 setTimeout(() => {
