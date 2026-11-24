@@ -1107,3 +1107,56 @@ section {
     padding: 5px 0;
   }
 }
+/* PREMIUM ABOUT US */
+.about-section {
+  padding: 80px 7%;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about-heading h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.1;
+  margin: 18px 0;
+}
+
+.about-highlight {
+  color: var(--gold);
+  font-family: 'Bodoni Moda Custom', serif;
+  font-style: italic;
+  font-size: 25px;
+}
+
+.about-content {
+  border-left: 1px solid var(--gold);
+  padding-left: 30px;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.about-content p + p {
+  margin-top: 18px;
+}
+
+@media (max-width: 700px) {
+  .about-section {
+    padding: 45px 20px;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-content {
+    padding-left: 18px;
+  }
+}
