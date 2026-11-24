@@ -113,3 +113,13 @@ galleryPrev?.addEventListener('click', () => {
 });
 
 showSlide(0);
+/* PREMIUM MOBILE NAVIGATION */
+const nav = document.createElement('nav');
+nav.className = 'mobile-nav';
+nav.innerHTML = `
+  <a href="#home">⌂<span>Home</span></a>
+  <a href="#contacts">♧<span>Contact</span></a>
+  <a href="#designs">✧<span>Designs</span></a>
+  <a href="#gallery">▧<span>Gallery</span></a>
+`;
+document.body.appendChild(nav);
