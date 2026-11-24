@@ -655,3 +655,71 @@ body.light-theme .brand-intro p {
     font-size: 42px;
   }
 }
+/* YASH ORNAMENTS — SIGNATURE GOLD FINISH */
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3,
+.brand,
+.section-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+}
+
+.hero-copy h1 {
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+}
+
+.hero-art {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(197, 164, 109, .35);
+  box-shadow: inset 0 0 60px rgba(197, 164, 109, .12);
+}
+
+.hero-art::before {
+  content: "✧";
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 55px;
+  color: var(--gold);
+  opacity: .65;
+}
+
+.hero-art::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(197, 164, 109, .22);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ring {
+  filter: drop-shadow(0 12px 24px rgba(197, 164, 109, .25));
+}
+
+.button-gold {
+  background: linear-gradient(135deg, #e0bd7b, #a77a37);
+  border: 1px solid #d0ad70;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.button-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(197, 164, 109, .25);
+}
+
+body.light-theme .hero-art {
+  background: radial-gradient(circle, #fffdf8, #eee2ce);
+}
+
+body:not(.light-theme) .hero-art {
+  background: radial-gradient(circle, #263957, #101b32);
+}
