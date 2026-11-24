@@ -11,13 +11,13 @@ const aboutSection = `
   <div class="about-layout">
     <div class="about-heading">
       <p class="eyebrow">OUR STORY</p>
-      <h2>About Yash Ornaments</h2>
-      <p class="about-highlight">Defining Modern Luxury</p>
+      <h2>Where Your Jewellery Era Begins.</h2>
+      <h2>Where Your Jewellery Era Begins.</h2>
     </div>
     <div class="about-content">
-      <p>At Yash Ornaments, every creation reflects the beauty of fine craftsmanship and timeless elegance.</p>
-      <p>With a passion for jewellery and attention to detail, we bring thoughtfully crafted designs to life.</p>
-    </div>
+      <p>Every story of elegance begins with the perfect piece.</p>
+      <p>Discover timeless craftsmanship, distinctive designs and the beauty of modern luxury at Yash Ornaments.</p>
+</div>
   </div>
 </section>
 `;
