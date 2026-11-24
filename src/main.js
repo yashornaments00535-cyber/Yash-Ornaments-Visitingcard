@@ -6,7 +6,33 @@ const contactCards = card.contacts.map((c,i)=>{
   const p=phone(c.phone), w=phone(c.whatsapp||c.phone);
   return `<article class="contact-card"><div class="contact-icon">${['♙','✦','↗','▧'][i%4]}</div><div class="contact-info"><h3>${c.title}</h3><p>${c.subtitle||''}</p>${p?`<p class="number">${c.phone}</p>`:''}</div><div class="actions">${p?`<a class="button button-outline" href="tel:${p}">Call</a>`:''}${w?`<a class="button button-gold" target="_blank" rel="noreferrer" href="https://wa.me/${w}">WhatsApp</a>`:''}<span class="placeholder">${p?'':'Add number in src/data.js'}</span></div></article>`;
 }).join('');
-const gallery=card.gallery.length?`<section class="section gallery-section"><div class="section-head"><p class="eyebrow">CRAFT & DETAIL</p><h2>Selected Designs</h2></div><div class="gallery">${card.gallery.map(f=>`<figure><img loading="lazy" src="/images/${encodeURIComponent(f)}" alt="Yash Ornaments jewellery design"></figure>`).join('')}</div></section>`:`<section class="section gallery-section"><div class="section-head"><p class="eyebrow">CRAFT & DETAIL</p><h2>Our Designs</h2><p class="muted">Add your favourite jewellery photos to the gallery by following the guide in README.</p></div></section>`;
+const gallery = card.gallery.length
+  ? `<section class="section gallery-section" id="gallery">
+      <div class="section-head">
+        <p class="eyebrow">CRAFT & DETAIL</p>
+        <h2>Selected Designs</h2>
+      </div>
+      <div class="gallery-slider">
+        <div class="gallery-track">
+          ${card.gallery.map((f,i)=>`
+            <figure class="gallery-slide ${i===0?'active':''}">
+              <img src="/images/${encodeURIComponent(f)}" alt="Yash Ornaments jewellery design">
+            </figure>
+          `).join('')}
+        </div>
+        <div class="slider-controls">
+          <button id="galleryPrev" aria-label="Previous design">←</button>
+          <span id="galleryCounter">01 / ${String(card.gallery.length).padStart(2,'0')}</span>
+          <button id="galleryNext" aria-label="Next design">→</button>
+        </div>
+      </div>
+    </section>`
+  : `<section class="section gallery-section" id="gallery">
+      <div class="section-head">
+        <p class="eyebrow">CRAFT & DETAIL</p>
+        <h2>Selected Designs</h2>
+      </div>
+    </section>`;
 const intro = document.createElement('div');
 intro.className = 'brand-intro';
 intro.innerHTML = `
