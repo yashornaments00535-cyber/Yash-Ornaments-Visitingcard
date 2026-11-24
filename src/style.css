@@ -568,3 +568,91 @@ body.light-theme .brand-intro {
 body.light-theme .brand-intro p {
   color: #a7834f !important;
 }
+/* PREMIUM YASH ORNAMENTS HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 55px;
+  padding: 85px 0;
+}
+
+.hero-copy {
+  max-width: 650px;
+}
+
+.hero-copy .eyebrow {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hero-copy h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.12;
+  margin: 22px 0;
+  letter-spacing: -1.5px;
+}
+
+.hero-copy .desc {
+  max-width: 490px;
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.hero-signature {
+  margin-top: 38px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+
+.hero-signature span {
+  display: block;
+  margin-top: 8px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  opacity: .75;
+}
+
+.hero-art {
+  min-height: 420px;
+  border-radius: 260px 260px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+}
+
+.art-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-align: center;
+  color: var(--gold);
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 55px 0;
+  }
+
+  .hero-art {
+    min-height: 320px;
+  }
+
+  .hero-copy h1 {
+    font-size: 42px;
+  }
+}
