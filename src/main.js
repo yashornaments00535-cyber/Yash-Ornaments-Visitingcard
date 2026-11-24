@@ -65,7 +65,12 @@ document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
 
   </div>
 </section>
-<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address"><p class="eyebrow">VISIT OUR OFFICE</p><h2>Yash Ornaments</h2><p>${card.address}</p><a class="button button-outline" target="_blank" rel="noreferrer" href="${card.mapUrl}">Get Directions ↗</a></section><footer><div>${card.brand}</div><small>${card.tagline}</small><div class="footer-links"><a href="${card.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a></div><small>Custom & stylish designs • Gold jewellery manufacturing</small></footer></main>`;
+<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address"><p class="eyebrow">VISIT OUR OFFICE</p><h2>Yash Ornaments</h2><p>${card.address}</p><a class="button button-outline" target="_blank" rel="noreferrer" href="${card.mapUrl}">Get Directions ↗</a></section><footer><div class="footer-brand">
+  <span class="footer-brand-yash">YASH</span>
+  <span class="footer-brand-ornaments">
+    <span>O</span><span>R</span><span>N</span><span>A</span><span>M</span><span>E</span><span>N</span><span>T</span><span>S</span>
+  </span>
+</div><small>${card.tagline}</small><div class="footer-links"><a href="${card.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a></div><small>Custom & stylish designs • Gold jewellery manufacturing</small></footer></main>`;
 document.body.classList.add('intro-active');
 
 setTimeout(() => {
