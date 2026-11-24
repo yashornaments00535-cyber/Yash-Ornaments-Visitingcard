@@ -995,3 +995,43 @@ section {
   border-radius: 50%;
   margin-top: 2px;
 }
+
+/* FULL SCREEN JEWELLERY VIDEO */
+.hero-art {
+  min-height: 75vh !important;
+  width: 100%;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.hero-product-image {
+  width: 100% !important;
+  height: 75vh !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  filter: none !important;
+}
+
+.hero-art::before,
+.hero-art::after,
+.hero-art .ring,
+.hero-art .art-label {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .hero-art {
+    min-height: 65vh !important;
+  }
+
+  .hero-product-image {
+    height: 65vh !important;
+  }
+}
