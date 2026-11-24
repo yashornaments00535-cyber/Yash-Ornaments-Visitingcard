@@ -111,7 +111,7 @@ galleryNext?.addEventListener('click', () => {
 galleryPrev?.addEventListener('click', () => {
   showSlide(currentSlide - 1);
 });
-
+<a href="https://www.google.com/maps/search/?api=1&query=Yash+Ornaments+Manekchowk+Ahmedabad" target="_blank" rel="noreferrer">⌖<span>Direction</span></a>
 showSlide(0);
 /* PREMIUM MOBILE NAVIGATION */
 const nav = document.createElement('nav');
