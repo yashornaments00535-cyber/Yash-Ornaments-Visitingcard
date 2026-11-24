@@ -121,7 +121,7 @@ nav.innerHTML = `
   <a href="#contacts">♧<span>Contact</span></a>
   <a href="#gallery">▧<span>Gallery</span></a>
   <a href="https://www.google.com/maps/search/?api=1&query=Yash+Ornaments+Manekchowk+Ahmedabad" target="_blank" rel="noreferrer">⌖<span>Direction</span></a>
-`;
+ `;
 document.body.appendChild(nav);
 /* ACTIVE MOBILE NAVIGATION */
 const navLinks = document.querySelectorAll('.mobile-nav a');
