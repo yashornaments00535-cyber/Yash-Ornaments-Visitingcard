@@ -783,3 +783,87 @@ body:not(.light-theme) .hero-art {
     letter-spacing: 2px;
   }
 }
+/* PREMIUM JEWELLERY SLIDER */
+.gallery-slider {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.gallery-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(197,164,109,.35);
+}
+
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .8s ease, visibility .8s ease;
+}
+
+.gallery-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  padding: 12px;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin-top: 20px;
+}
+
+.slider-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--cream);
+  font-size: 20px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.slider-controls button:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+#galleryCounter {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+body.light-theme .slider-controls button {
+  color: var(--cream);
+}
+
+@media(max-width:600px) {
+  .gallery-slider {
+    width: 100%;
+  }
+
+  .gallery-track {
+    aspect-ratio: 4 / 5;
+    border-radius: 18px;
+  }
+}
