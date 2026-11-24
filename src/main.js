@@ -12,7 +12,6 @@ const aboutSection = `
     <div class="about-heading">
       <p class="eyebrow">OUR STORY</p>
       <h2>Where Your Jewellery Era Begins.</h2>
-      <h2>Where Your Jewellery Era Begins.</h2>
     </div>
     <div class="about-content">
       <p>Every story of elegance begins with the perfect piece.</p>
