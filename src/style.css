@@ -867,3 +867,31 @@ body.light-theme .slider-controls button {
     border-radius: 18px;
   }
 }
+/* COMPACT MOBILE LUXURY LAYOUT */
+@media (max-width: 600px) {
+  .section {
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
+  }
+
+  .section-head {
+    margin-bottom: 20px !important;
+  }
+
+  .section-head h2 {
+    font-size: 34px;
+  }
+
+  .contact-card {
+    padding: 16px !important;
+  }
+
+  .gallery-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .gallery-track {
+    max-height: 65vh;
+  }
+}
