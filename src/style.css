@@ -1035,3 +1035,10 @@ section {
     height: 65vh !important;
   }
 }
+@font-face {
+  font-family: 'Bodoni Moda Custom';
+  src: url('/fonts/BodoniModa 48pt-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
