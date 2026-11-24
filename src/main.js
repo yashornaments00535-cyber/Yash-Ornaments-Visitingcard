@@ -81,3 +81,35 @@ themeToggle.addEventListener('click', () => {
       ? '☾ Dark Mode'
       : '☀ Light Mode';
 });
+/* JEWELLERY SLIDER CONTROLS */
+const slides = document.querySelectorAll('.gallery-slide');
+const galleryNext = document.querySelector('#galleryNext');
+const galleryPrev = document.querySelector('#galleryPrev');
+const galleryCounter = document.querySelector('#galleryCounter');
+
+let currentSlide = 0;
+
+function showSlide(index) {
+  if (!slides.length) return;
+
+  currentSlide = (index + slides.length) % slides.length;
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === currentSlide);
+  });
+
+  if (galleryCounter) {
+    galleryCounter.textContent =
+      `${String(currentSlide + 1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+  }
+}
+
+galleryNext?.addEventListener('click', () => {
+  showSlide(currentSlide + 1);
+});
+
+galleryPrev?.addEventListener('click', () => {
+  showSlide(currentSlide - 1);
+});
+
+showSlide(0);
