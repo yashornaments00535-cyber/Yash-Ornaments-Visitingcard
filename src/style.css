@@ -560,3 +560,11 @@ body.light-theme .ring {
 body.light-theme .brand-intro {
   background: #101b32;
 }
+/* LIGHT MODE OPENING SCREEN */
+body.light-theme .brand-intro {
+  background: #faf7f0 !important;
+}
+
+body.light-theme .brand-intro p {
+  color: #a7834f !important;
+}
