@@ -59,7 +59,7 @@ document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
       <div class="ring-stone"></div>
     </div>
 
-<video class="hero-product-image" autoplay muted loop playsinline>
+<video class="hero-product-image" id="heroProductVideo" muted playsinline preload="metadata">
   <source src="/images/Ladies%20Ring-01.mp4" type="video/mp4">
 </video>
 
