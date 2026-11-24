@@ -1,6 +1,6 @@
 import { card } from './data.js';
 import './style.css';
-const app = document.querySelector('#app');
+const app = document.querySelector('#app');document.body.classList.add('light-theme');
 const phone = (s='') => String(s).replace(/[^0-9]/g,'');
 const contactCards = card.contacts.map((c,i)=>{
   const p=phone(c.phone), w=phone(c.whatsapp||c.phone);
