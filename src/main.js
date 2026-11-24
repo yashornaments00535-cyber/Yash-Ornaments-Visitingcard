@@ -58,7 +58,11 @@ document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
     <div class="ring" aria-hidden="true">
       <div class="ring-stone"></div>
     </div>
-    <img class="hero-product-image" src="/images/Whole%20Set%20Rose%20Gold-01.jpeg" alt="Yash Ornaments Jewellery Collection">
+
+<video class="hero-product-image" autoplay muted loop playsinline>
+  <source src="/images/Ladies%20Ring-01.mp4" type="video/mp4">
+</video>
+
   </div>
 </section>
 <section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address"><p class="eyebrow">VISIT OUR OFFICE</p><h2>Yash Ornaments</h2><p>${card.address}</p><a class="button button-outline" target="_blank" rel="noreferrer" href="${card.mapUrl}">Get Directions ↗</a></section><footer><div>${card.brand}</div><small>${card.tagline}</small><div class="footer-links"><a href="${card.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a></div><small>Custom & stylish designs • Gold jewellery manufacturing</small></footer></main>`;
