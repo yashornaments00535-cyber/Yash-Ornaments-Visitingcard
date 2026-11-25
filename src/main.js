@@ -12,8 +12,12 @@ const contactCards = card.contacts.map((c,i)=>{
     '<i data-lucide="images"></i>',
     '<i data-lucide="wallet"></i>'
   ][i]}
-</div><div class="contact-info"><h3>${c.title}</h3><p>${c.subtitle||''}</p>${p?`<p class="number">${c.phone}</p>`:''}</div><div class="actions">${p?`<a class="button button-outline" href="tel:${p}">Call</a>`:''}${w?`<a class="button button-gold" target="_blank" rel="noreferrer" href="https://wa.me/${w}">WhatsApp</a>`:''}<span class="placeholder">${p?'':'Add number in src/data.js'}</span></div></article>`;
-}).join('');
+</div><div class="contact-info"><h3>${c.title}</h3><p>${c.subtitle||''}</p>${p?`<p class="number">${c.phone}</p>`:''}</div><div class="actions">${p?`<a class="button button-outline" href="tel:${p}">Call</a>`:''}${w?`<a class="button button-gold" target="_blank" rel="noreferrer" href="https://wa.me/${w}${i===4?'':`?text=${encodeURIComponent([
+  "Hello Yash Ornaments, I would like to enquire about placing an order. Please share the details.",
+  "Hello Yash Ornaments, I need assistance regarding your products and services. Please help me.",
+  "Hello Yash Ornaments, I am interested in business and wholesale opportunities. Please share more details.",
+  "Hello Yash Ornaments, I would like to receive your latest jewellery photos and videos."
+][i])}`}"
 const aboutSection = `
 <section class="section about-section" id="about">
   <div class="about-layout">
