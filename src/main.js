@@ -182,7 +182,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.4 });
 
-document.querySelectorAll('#home, #contacts, #gallery').forEach(section => {
+document.querySelectorAll('#home, #contacts, #gallery, #about').forEach(section => {
   sectionObserver.observe(section);
 });
 
