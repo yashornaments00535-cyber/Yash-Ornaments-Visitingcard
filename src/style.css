@@ -1169,3 +1169,41 @@ section {
 body:not(.light-theme) .mobile-nav .nav-icon {
   filter: grayscale(1) brightness(0) invert(1);
 }
+.why-us-section {
+  padding: 70px 7%;
+}
+
+.why-us-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.why-us-label {
+  font-family: 'Bodoni Moda Custom', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 28px;
+}
+
+.why-us-grid > div {
+  padding: 22px 8px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .why-us-section {
+    padding: 45px 20px;
+  }
+
+  .why-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 14px;
+  }
+}
