@@ -1,17 +1,16 @@
 {
-  "name": "yash-ornaments-digital-card",
+  "name": "yash-ornaments-visitingcard",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite",
     "preview": "vite preview"
   },
-"dependencies": {
-  "vite": "^6.0.0",
-  "@supabase/supabase-js": "^2.57.0"
-}
+  "dependencies": {
+    "vite": "^6.0.0",
+    "@supabase/supabase-js": "^2.57.0"
   },
   "devDependencies": {}
 }
