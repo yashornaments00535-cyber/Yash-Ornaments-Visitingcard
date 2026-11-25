@@ -1207,7 +1207,11 @@ body:not(.light-theme) .mobile-nav .nav-icon {
     gap: 0 14px;
   }
 }
-.hero-copy .eyebrow {
+.hero-copy .eyebrow,
+.brand,
+.tagline,
+.why-us-label,
+.address .section-head > p:not(.eyebrow) {
   background: linear-gradient(
     110deg,
     var(--gold) 20%,
