@@ -20,6 +20,23 @@ const aboutSection = `
   </div>
 </section>
 `;
+const whyUsSection = `
+<section class="section why-us-section" id="why-us">
+  <div class="why-us-heading">
+    <p class="why-us-label">THE YASH ORNAMENTS PROMISE</p>
+    <h2>Built on Trust & Craft</h2>
+  </div>
+
+  <div class="why-us-grid">
+    <div>Premium Customize Jewelry Manufacturer</div>
+    <div>Time to Time Delivery</div>
+    <div>Proper Order Understanding</div>
+    <div>Quick Response</div>
+    <div>Quality Assurance</div>
+    <div>Customer First Approach</div>
+  </div>
+</section>
+`;
 const gallery = card.gallery.length
   ? `<section class="section gallery-section" id="gallery">
       <div class="section-head">
@@ -79,7 +96,7 @@ document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
 
   </div>
 </section>
-<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${gallery.replace('gallery-section','gallery-section').replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address" id="address">
+<section id="contacts" class="section contacts"><div class="section-head"><p class="eyebrow">REACH THE RIGHT TEAM</p><h2>Office Contacts</h2><p class="muted">Choose a department to connect directly.</p></div><div class="contact-list">${contactCards}</div></section>${whyUsSection}${gallery.replace('gallery-section','gallery-section')}.replace('<section class="section gallery-section">','<section id="gallery" class="section gallery-section">')}<section class="section address" id="address">
   <div class="section-head">
     <p class="eyebrow">OUR LOCATION</p>
     <h2>Visit Our Showroom</h2>
