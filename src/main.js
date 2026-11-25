@@ -4,7 +4,15 @@ const app = document.querySelector('#app');document.body.classList.add('light-th
 const phone = (s='') => String(s).replace(/[^0-9]/g,'');
 const contactCards = card.contacts.map((c,i)=>{
   const p=phone(c.phone), w=phone(c.whatsapp||c.phone);
-  return `<article class="contact-card"><div class="contact-icon">${['♙','✦','↗','▧'][i%4]}</div><div class="contact-info"><h3>${c.title}</h3><p>${c.subtitle||''}</p>${p?`<p class="number">${c.phone}</p>`:''}</div><div class="actions">${p?`<a class="button button-outline" href="tel:${p}">Call</a>`:''}${w?`<a class="button button-gold" target="_blank" rel="noreferrer" href="https://wa.me/${w}">WhatsApp</a>`:''}<span class="placeholder">${p?'':'Add number in src/data.js'}</span></div></article>`;
+  return `<article class="contact-card"><div class="contact-icon">
+  ${[
+    '<i data-lucide="shopping-bag"></i>',
+    '<i data-lucide="headset"></i>',
+    '<i data-lucide="briefcase-business"></i>',
+    '<i data-lucide="images"></i>',
+    '<i data-lucide="wallet"></i>'
+  ][i]}
+</div><div class="contact-info"><h3>${c.title}</h3><p>${c.subtitle||''}</p>${p?`<p class="number">${c.phone}</p>`:''}</div><div class="actions">${p?`<a class="button button-outline" href="tel:${p}">Call</a>`:''}${w?`<a class="button button-gold" target="_blank" rel="noreferrer" href="https://wa.me/${w}">WhatsApp</a>`:''}<span class="placeholder">${p?'':'Add number in src/data.js'}</span></div></article>`;
 }).join('');
 const aboutSection = `
 <section class="section about-section" id="about">
