@@ -20,7 +20,9 @@ const contactCards = card.contacts.map((c,i)=>{
     "Hello Yash Ornaments, I am interested in business and wholesale opportunities. Please share more details.",
   ];
 
-  const whatsappUrl = w
+  const whatsappUrl = w && i < 3
+  ? `https://wa.me/${w}?text=${encodeURIComponent(messages[i])}`
+  : '';
     ? `https://wa.me/${w}${i===3 || i===4 ? '' : `?text=${encodeURIComponent(messages[i])}`}`
     : '';
 
@@ -33,7 +35,7 @@ const contactCards = card.contacts.map((c,i)=>{
     </div>
     <div class="actions">
       ${p ? `<a class="button button-outline" href="tel:${p}">Call</a>` : ''}
-      ${w ? `<a class="button button-gold" target="_blank" rel="noreferrer" href="${whatsappUrl}">WhatsApp</a>` : ''}
+     ${whatsappUrl ? `<a class="button button-gold" target="_blank" rel="noreferrer" href="${whatsappUrl}">WhatsApp</a>` : ''}
       <span class="placeholder">${p ? '' : 'Add number in src/data.js'}</span>
     </div>
   </article>`;
