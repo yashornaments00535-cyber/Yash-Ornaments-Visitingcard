@@ -23,8 +23,6 @@ const contactCards = card.contacts.map((c,i)=>{
   const whatsappUrl = w && i < 3
   ? `https://wa.me/${w}?text=${encodeURIComponent(messages[i])}`
   : '';
-    ? `https://wa.me/${w}${i===3 || i===4 ? '' : `?text=${encodeURIComponent(messages[i])}`}`
-    : '';
 
   return `<article class="contact-card">
     <div class="contact-icon">${icons[i]}</div>
