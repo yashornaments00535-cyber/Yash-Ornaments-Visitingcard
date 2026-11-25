@@ -129,6 +129,7 @@ document.body.appendChild(intro);app.innerHTML=`<main><div class="theme-toggle">
     </div>
   </div>
 </section> ↗</a></section>${aboutSection}<footer><div class="footer-brand">YASH ORNAMENTS</div><small>${card.tagline}</small><div class="footer-links"><a href="${card.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a></div><small>Custom & stylish designs • Gold jewellery manufacturing</small></footer></main>`;
+lucide.createIcons();
 document.body.classList.add('intro-active');
 
 setTimeout(() => {
