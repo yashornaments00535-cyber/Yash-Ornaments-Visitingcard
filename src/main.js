@@ -161,8 +161,8 @@ nav.className = 'mobile-nav';
 nav.innerHTML = `
   <a href="#home">♡⌂<span>Home</span></a>
   <a href="#contacts">✆✉<span>Contact</span></a>
-  <a href="#gallery">˖°📷 ༘<span>Gallery</span></a>
-  <a href="https://www.google.com/maps/search/?api=1&query=Yash+Ornaments+Manekchowk+Ahmedabad" target="_blank" rel="noreferrer">🚗<span>Direction</span></a>
+  <a href="#gallery"><span class="nav-icon">˖°📷 ༘</span><span>Gallery</span></a>
+  <a href="https://www.google.com/maps/search/?api=1&query=Yash+Ornaments+Manekchowk+Ahmedabad" target="_blank" rel="noreferrer"><span class="nav-icon">🚗</span><span>Direction</span></a>
   <a href="#about">ⓘ<span>About Us</span></a>
 
  `;
