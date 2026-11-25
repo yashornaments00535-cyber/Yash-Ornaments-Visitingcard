@@ -18,11 +18,10 @@ const contactCards = card.contacts.map((c,i)=>{
     "Hello Yash Ornaments, I would like to enquire about placing an order. Please share the details.",
     "Hello Yash Ornaments, I need assistance regarding your products and services. Please help me.",
     "Hello Yash Ornaments, I am interested in business and wholesale opportunities. Please share more details.",
-    "Hello Yash Ornaments, I would like to receive your latest jewellery photos and videos."
   ];
 
   const whatsappUrl = w
-    ? `https://wa.me/${w}${i===4 ? '' : `?text=${encodeURIComponent(messages[i])}`}`
+    ? `https://wa.me/${w}${i===3 || i===4 ? '' : `?text=${encodeURIComponent(messages[i])}`}`
     : '';
 
   return `<article class="contact-card">
