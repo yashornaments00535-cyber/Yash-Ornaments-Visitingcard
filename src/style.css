@@ -1232,3 +1232,9 @@ body:not(.light-theme) .mobile-nav .nav-icon {
     background-position: 200% center;
   }
 }
+.brand,
+.tagline,
+.why-us-label,
+.address .section-head > p:not(.eyebrow) {
+  background-size: 200% auto;
+}
