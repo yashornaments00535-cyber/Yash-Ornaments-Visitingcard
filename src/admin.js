@@ -1,5 +1,6 @@
 
 import { supabase } from './supabase.js';
+import './style.css';
 
 const app = document.querySelector('#app');
 
