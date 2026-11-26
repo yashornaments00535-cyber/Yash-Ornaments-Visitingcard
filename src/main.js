@@ -76,10 +76,17 @@ const whyUsSection = `
   </div>
 </section>
 `;
-<CodeBlock language="javascript" editable>
 const gallery = `
-`;
-  
+  <section class="section gallery-section" id="gallery">
+    <div class="section-head">
+      <p class="eyebrow">CRAFT & DETAIL</p>
+      <h2>Explore Our Collections</h2>
+    </div>
+    <div id="galleryCategories" class="gallery-categories"></div>
+    <div id="gallerySubcategories" class="gallery-subcategories"></div>
+    <div id="galleryPublicPhotos" class="gallery-public-photos"></div>
+  </section>
+`;  
   const intro = document.createElement('div');
 intro.className = 'brand-intro';
 intro.innerHTML = `
