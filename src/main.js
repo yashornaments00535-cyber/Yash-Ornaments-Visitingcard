@@ -80,7 +80,6 @@ const whyUsSection = `
 const gallery = `
 
 `;
-</CodeBlock>
   const intro = document.createElement('div');
 intro.className = 'brand-intro';
 intro.innerHTML = `
