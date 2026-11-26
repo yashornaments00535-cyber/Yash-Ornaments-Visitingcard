@@ -57,7 +57,7 @@ form.addEventListener('submit', async (event) => {
   });
 
   if (error) {
-    message.textContent = 'Login failed. Please check your details.';
+     message.textContent = error.message;
     return;
   }
 
