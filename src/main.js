@@ -1,5 +1,6 @@
 import { card } from './data.js';
 import './style.css';
+import { supabase } from './supabase.js';
 const currentPath = window.location.pathname;
 
 if (currentPath === '/admin') {
@@ -75,34 +76,12 @@ const whyUsSection = `
   </div>
 </section>
 `;
-const gallery = card.gallery.length
-  ? `<section class="section gallery-section" id="gallery">
-      <div class="section-head">
-        <p class="eyebrow">CRAFT & DETAIL</p>
-        <h2>Selected Designs</h2>
-      </div>
-      <div class="gallery-slider">
-        <div class="gallery-track">
-          ${card.gallery.map((f,i)=>`
-            <figure class="gallery-slide ${i===0?'active':''}">
-              <img src="/images/${encodeURIComponent(f)}" alt="Yash Ornaments jewellery design">
-            </figure>
-          `).join('')}
-        </div>
-        <div class="slider-controls">
-          <button id="galleryPrev" aria-label="Previous design">←</button>
-          <span id="galleryCounter">01 / ${String(card.gallery.length).padStart(2,'0')}</span>
-          <button id="galleryNext" aria-label="Next design">→</button>
-        </div>
-      </div>
-    </section>`
-  : `<section class="section gallery-section" id="gallery">
-      <div class="section-head">
-        <p class="eyebrow">CRAFT & DETAIL</p>
-        <h2>Selected Designs</h2>
-      </div>
-    </section>`;
-const intro = document.createElement('div');
+<CodeBlock language="javascript" editable>
+const gallery = `
+
+`;
+</CodeBlock>
+  const intro = document.createElement('div');
 intro.className = 'brand-intro';
 intro.innerHTML = `
   <img src="/images/Logo.png" alt="Yash Ornaments">
