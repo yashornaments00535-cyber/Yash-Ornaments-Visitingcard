@@ -1,7 +1,11 @@
 import { card } from './data.js';
 import './style.css';
-if (window.location.pathname === '/admin') {
+const currentPath = window.location.pathname;
+
+if (currentPath === '/admin') {
   import('./admin.js');
+} else if (currentPath === '/reset-password') {
+  import('./reset-password.js');
 } else {
 const app = document.querySelector('#app');document.body.classList.add('light-theme');
 const phone = (s='') => String(s).replace(/[^0-9]/g,'');
