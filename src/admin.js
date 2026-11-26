@@ -93,3 +93,4 @@ document.querySelector('#logoutButton').addEventListener('click', async () => {
   await supabase.auth.signOut();
   window.location.reload();
 });
+});
