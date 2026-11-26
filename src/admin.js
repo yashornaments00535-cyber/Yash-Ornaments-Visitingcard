@@ -143,7 +143,51 @@ app.innerHTML = `
     </main>
   </div>
 `;
+const adminSections = {
+  overview: {
+    title: 'Dashboard Overview',
+    heading: 'Welcome to Admin Panel',
+    description: 'Manage your Yash Ornaments website from one place.'
+  },
+  gallery: {
+    title: 'Gallery Manager',
+    heading: 'Manage Gallery',
+    description: 'Here you will be able to upload, view, reorder and delete gallery photos.'
+  },
+  products: {
+    title: 'Product Manager',
+    heading: 'Manage Products',
+    description: 'Here you will be able to add and manage product photos, videos and details.'
+  },
+  contacts: {
+    title: 'Contact Manager',
+    heading: 'Manage Contacts',
+    description: 'Here you will be able to update department names, phone numbers and WhatsApp details.'
+  },
+  settings: {
+    title: 'Website Settings',
+    heading: 'Manage Website',
+    description: 'Here you will be able to update your logo, tagline and website information.'
+  }
+};
 
+document.querySelectorAll('.admin-nav button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const section = adminSections[button.dataset.section];
+
+    if (!section) return;
+
+    document.querySelectorAll('.admin-nav button').forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    document.querySelector('.admin-topbar h1').textContent = section.title;
+    document.querySelector('.admin-content-card h2').textContent = section.heading;
+    document.querySelector('.admin-content-card .admin-muted').textContent = section.description;
+  });
+});
 document.querySelector('#logoutButton').addEventListener('click', async () => {
   await supabase.auth.signOut();
   window.location.reload();
