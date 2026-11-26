@@ -102,44 +102,13 @@ app.innerHTML = `
         <button class="admin-logout" id="logoutButton">LOG OUT</button>
       </header>
 
-      <section class="admin-stats">
-        <div class="admin-stat-card">
-          <span>Gallery</span>
-          <h2>Manage Photos</h2>
-        </div>
-
-        <div class="admin-stat-card">
-          <span>Products</span>
-          <h2>Manage Items</h2>
-        </div>
-
-        <div class="admin-stat-card">
-          <span>Contacts</span>
-          <h2>Manage Details</h2>
-        </div>
-
-        <div class="admin-stat-card">
-          <span>Website</span>
-          <h2>Manage Settings</h2>
-        </div>
-      </section>
-
-      <section class="admin-content-card">
-        <h2>Welcome to Admin Panel</h2>
-        <p class="admin-muted">
-          Manage your jewellery gallery, products, contact information
-          and website settings from one place.
-        </p>
-      </section>
-
-      <section class="admin-content-card">
-        <h2>Quick Access</h2>
-        <p class="admin-muted">
-          Your website management workspace is ready.
-          Select a section from the sidebar to get started.
-        </p>
-      </section>
-
+     <section class="admin-content-card" id="adminSectionContent">
+  <h2>Welcome to Admin Panel</h2>
+  <p class="admin-muted">
+    Manage your jewellery gallery, products, contact information
+    and website settings from one place.
+  </p>
+</section>
     </main>
   </div>
 `;
@@ -171,24 +140,219 @@ const adminSections = {
   }
 };
 
-document.querySelectorAll('.admin-nav button').forEach((button) => {
-  button.addEventListener('click', () => {
-    const section = adminSections[button.dataset.section];
+async function loadGalleryManager() {
+  const content = document.querySelector('#adminSectionContent');
 
+  content.innerHTML = `
+    <h2>Gallery Manager</h2>
+    <p class="admin-muted">Manage your jewellery collection.</p>
+
+    <div class="gallery-admin-form">
+      <label>Category</label>
+      <select id="galleryCategory">
+        <option value="">Loading categories...</option>
+      </select>
+
+      <label>Subcategory</label>
+      <select id="gallerySubcategory">
+        <option value="">Select subcategory</option>
+      </select>
+
+      <label>Select Photos</label>
+      <input type="file" id="galleryFiles" accept="image/*" multiple>
+
+      <button id="uploadGalleryButton">UPLOAD PHOTOS</button>
+      <p id="galleryMessage" class="admin-muted"></p>
+    </div>
+
+    <div id="galleryPhotoList"></div>
+  `;
+
+  const categorySelect = document.querySelector('#galleryCategory');
+  const subcategorySelect = document.querySelector('#gallerySubcategory');
+  const message = document.querySelector('#galleryMessage');
+
+  const { data: categories, error } = await supabase
+    .from('gallery_categories')
+    .select('id, name')
+    .order('id');
+
+  if (error) {
+    message.textContent = error.message;
+    return;
+  }
+
+  categorySelect.innerHTML =
+    '<option value="">Select category</option>' +
+    categories.map(c =>
+      `<option value="${c.id}">${c.name}</option>`
+    ).join('');
+
+  categorySelect.addEventListener('change', async () => {
+    const { data, error } = await supabase
+      .from('gallery_subcategories')
+      .select('id, name')
+      .eq('category_id', categorySelect.value)
+      .order('id');
+
+    if (error) {
+      message.textContent = error.message;
+      return;
+    }
+
+    subcategorySelect.innerHTML =
+      '<option value="">Select subcategory</option>' +
+      data.map(s =>
+        `<option value="${s.id}">${s.name}</option>`
+      ).join('');
+
+    await loadPhotos();
+  });
+
+  subcategorySelect.addEventListener('change', loadPhotos);
+
+  async function loadPhotos() {
+    const subcategoryId = subcategorySelect.value;
+    const photoList = document.querySelector('#galleryPhotoList');
+
+    if (!subcategoryId) {
+      photoList.innerHTML = '';
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from('gallery_items')
+      .select('*')
+      .eq('subcategory_id', subcategoryId)
+      .order('sort_order');
+
+    if (error) {
+      message.textContent = error.message;
+      return;
+    }
+
+    photoList.innerHTML = data.length
+      ? data.map(photo => `
+          <div class="gallery-admin-photo">
+            <img src="${photo.image_url}" alt="Gallery photo">
+            <button data-delete-photo="${photo.id}">DELETE</button>
+          </div>
+        `).join('')
+      : '<p class="admin-muted">No photos in this subcategory yet.</p>';
+
+    photoList.querySelectorAll('[data-delete-photo]').forEach(button => {
+      button.addEventListener('click', async () => {
+        if (!confirm('Delete this photo?')) return;
+
+        const photo = data.find(p => String(p.id) === button.dataset.deletePhoto);
+        const path = decodeURIComponent(
+          new URL(photo.image_url).pathname.split('/yash-gallery/')[1]
+        );
+
+        const { error: storageError } = await supabase.storage
+          .from('yash-gallery')
+          .remove([path]);
+
+        if (storageError) {
+          message.textContent = storageError.message;
+          return;
+        }
+
+        const { error: deleteError } = await supabase
+          .from('gallery_items')
+          .delete()
+          .eq('id', photo.id);
+
+        if (deleteError) {
+          message.textContent = deleteError.message;
+          return;
+        }
+
+        message.textContent = 'Photo deleted successfully.';
+        await loadPhotos();
+      });
+    });
+  }
+
+  document.querySelector('#uploadGalleryButton').addEventListener('click', async () => {
+    const files = document.querySelector('#galleryFiles').files;
+    const category = categories.find(c => String(c.id) === categorySelect.value);
+    const subcategoryId = subcategorySelect.value;
+    const subcategory = subcategorySelect.selectedOptions[0]?.textContent;
+
+    if (!category || !subcategoryId || !files.length) {
+      message.textContent = 'Please select category, subcategory and photos.';
+      return;
+    }
+
+    const uploadButton = document.querySelector('#uploadGalleryButton');
+    uploadButton.disabled = true;
+    message.textContent = 'Uploading photos...';
+
+    for (const file of files) {
+      const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '-');
+      const path = `${category.name}/${subcategory}/${Date.now()}-${safeName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('yash-gallery')
+        .upload(path, file);
+
+      if (uploadError) {
+        message.textContent = uploadError.message;
+        uploadButton.disabled = false;
+        return;
+      }
+
+      const { data: publicData } = supabase.storage
+        .from('yash-gallery')
+        .getPublicUrl(path);
+
+      const { error: insertError } = await supabase
+        .from('gallery_items')
+        .insert({
+          subcategory_id: Number(subcategoryId),
+          image_url: publicData.publicUrl,
+          sort_order: 0
+        });
+
+      if (insertError) {
+        message.textContent = insertError.message;
+        uploadButton.disabled = false;
+        return;
+      }
+    }
+
+    document.querySelector('#galleryFiles').value = '';
+    message.textContent = 'All photos uploaded successfully!';
+    uploadButton.disabled = false;
+    await loadPhotos();
+  });
+}
+
+document.querySelectorAll('.admin-nav button').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const section = adminSections[button.dataset.section];
     if (!section) return;
 
-    document.querySelectorAll('.admin-nav button').forEach((item) => {
+    document.querySelectorAll('.admin-nav button').forEach(item => {
       item.classList.remove('active');
     });
 
     button.classList.add('active');
 
     document.querySelector('.admin-topbar h1').textContent = section.title;
-    document.querySelector('.admin-content-card h2').textContent = section.heading;
-    document.querySelector('.admin-content-card .admin-muted').textContent = section.description;
+
+    if (button.dataset.section === 'gallery') {
+      await loadGalleryManager();
+    } else {
+      document.querySelector('#adminSectionContent').innerHTML = `
+        <h2>${section.heading}</h2>
+        <p class="admin-muted">${section.description}</p>
+      `;
+    }
   });
 });
-document.querySelector('#logoutButton').addEventListener('click', async () => {
+  document.querySelector('#logoutButton').addEventListener('click', async () => {
   await supabase.auth.signOut();
   window.location.reload();
 });
