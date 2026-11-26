@@ -69,6 +69,5 @@ form.addEventListener('submit', async (event) => {
 
   if (adminError || !admin) {
     await supabase.auth.signOut();
-    message.textContent = 'You are not authorised as admin.';
-    return;
-  }
+     message.textContent = 'Login successful!';
+});
