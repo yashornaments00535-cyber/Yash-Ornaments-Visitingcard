@@ -74,4 +74,22 @@ if (adminError || !admin) {
 }
 
 message.textContent = 'Login successful!';
+
+app.innerHTML = `
+  <main class="admin-login">
+    <div class="admin-login-card">
+      <div class="admin-brand">YASH ORNAMENTS</div>
+      <p class="admin-tagline">DEFINING MODERN LUXURY</p>
+      <div class="admin-divider"></div>
+      <h1>Admin Dashboard</h1>
+      <p class="admin-description">Welcome to your website control panel.</p>
+
+      <button id="logoutButton">LOG OUT</button>
+    </div>
+  </main>
+`;
+
+document.querySelector('#logoutButton').addEventListener('click', async () => {
+  await supabase.auth.signOut();
+  window.location.reload();
 });
