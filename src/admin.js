@@ -64,7 +64,7 @@ form.addEventListener('submit', async (event) => {
   const { data: admin, error: adminError } = await supabase
     .from('admin_users')
     .select('*')
-    .eq('email', email)
+    .eq('user_id', data.user.id)
     .maybeSingle();
 
 if (adminError || !admin) {
