@@ -164,6 +164,125 @@ themeToggle.addEventListener('click', () => {
       ? '☾ Dark Mode'
       : '☀ Light Mode';
 });
+
+/* PUBLIC DYNAMIC GALLERY */
+async function loadPublicGallery() {
+  const categoryBox = document.querySelector('#galleryCategories');
+  const subcategoryBox = document.querySelector('#gallerySubcategories');
+  const photoBox = document.querySelector('#galleryPublicPhotos');
+
+  if (!categoryBox || !subcategoryBox || !photoBox) return;
+
+  try {
+    const { data: categories, error: categoryError } = await supabase
+      .from('gallery_categories')
+      .select('id, name')
+      .order('id');
+
+    if (categoryError) throw categoryError;
+
+    if (!categories || categories.length === 0) {
+      categoryBox.textContent = 'No collections available.';
+      return;
+    }
+
+    categoryBox.innerHTML = categories.map(category => `
+      <button class="gallery-category-btn" data-id="${category.id}">
+        ${category.name}
+      </button>
+    `).join('');
+
+    async function loadSubcategories(categoryId) {
+      categoryBox.querySelectorAll('button').forEach(button => {
+        button.classList.toggle(
+          'active',
+          Number(button.dataset.id) === Number(categoryId)
+        );
+      });
+
+      subcategoryBox.innerHTML = '<p>Loading collections...</p>';
+      photoBox.innerHTML = '';
+
+      const { data: subcategories, error } = await supabase
+        .from('gallery_subcategories')
+        .select('id, name')
+        .eq('category_id', categoryId)
+        .order('id');
+
+      if (error) throw error;
+
+      if (!subcategories || subcategories.length === 0) {
+        subcategoryBox.innerHTML = '<p>No subcategories available.</p>';
+        return;
+      }
+
+      subcategoryBox.innerHTML = subcategories.map(subcategory => `
+        <button class="gallery-subcategory-btn" data-id="${subcategory.id}">
+          ${subcategory.name}
+        </button>
+      `).join('');
+
+      async function loadPhotos(subcategoryId) {
+        subcategoryBox.querySelectorAll('button').forEach(button => {
+          button.classList.toggle(
+            'active',
+            Number(button.dataset.id) === Number(subcategoryId)
+          );
+        });
+
+        photoBox.innerHTML = '<p>Loading designs...</p>';
+
+        const { data: photos, error: photoError } = await supabase
+          .from('gallery_items')
+          .select('id, image_url, sort_order')
+          .eq('subcategory_id', subcategoryId)
+          .order('sort_order');
+
+        if (photoError) throw photoError;
+
+        if (!photos || photos.length === 0) {
+          photoBox.innerHTML = '<p>New designs coming soon.</p>';
+          return;
+        }
+
+        photoBox.innerHTML = photos.map(photo => `
+          <figure class="gallery-public-photo">
+            <img src="${photo.image_url}" alt="Yash Ornaments jewellery design" loading="lazy">
+          </figure>
+        `).join('');
+      }
+
+      subcategoryBox.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+          loadPhotos(button.dataset.id).catch(error => {
+            console.error('Gallery photos error:', error);
+            photoBox.textContent = 'Unable to load designs.';
+          });
+        });
+      });
+
+      await loadPhotos(subcategories[0].id);
+    }
+
+    categoryBox.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', () => {
+        loadSubcategories(button.dataset.id).catch(error => {
+          console.error('Gallery subcategory error:', error);
+          subcategoryBox.textContent = 'Unable to load collections.';
+        });
+      });
+    });
+
+    await loadSubcategories(categories[0].id);
+
+  } catch (error) {
+    console.error('Public gallery error:', error);
+    categoryBox.textContent = 'Unable to load gallery. Please try again later.';
+  }
+}
+
+loadPublicGallery();
+
 /* JEWELLERY SLIDER CONTROLS */
 const slides = document.querySelectorAll('.gallery-slide');
 const galleryNext = document.querySelector('#galleryNext');
