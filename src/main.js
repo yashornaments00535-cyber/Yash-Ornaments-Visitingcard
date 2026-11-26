@@ -78,8 +78,8 @@ const whyUsSection = `
 `;
 <CodeBlock language="javascript" editable>
 const gallery = `
-
 `;
+  
   const intro = document.createElement('div');
 intro.className = 'brand-intro';
 intro.innerHTML = `
