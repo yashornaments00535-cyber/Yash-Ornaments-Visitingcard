@@ -1,5 +1,8 @@
 import { card } from './data.js';
 import './style.css';
+if (window.location.pathname === '/admin') {
+  import('./admin.js');
+} else {
 const app = document.querySelector('#app');document.body.classList.add('light-theme');
 const phone = (s='') => String(s).replace(/[^0-9]/g,'');
 const contactCards = card.contacts.map((c,i)=>{
@@ -267,4 +270,5 @@ if (heroVideo) {
   }, { threshold: 0.5 });
 
   videoObserver.observe(heroVideo);
+}
 }
