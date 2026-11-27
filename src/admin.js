@@ -224,22 +224,62 @@ async function loadGalleryManager() {
       .from('gallery_items')
       .select('*')
       .eq('subcategory_id', subcategoryId)
-      .order('sort_order');
+.order('sort_order', { ascending: true })
+.order('created_at', { ascending: true });
 
     if (error) {
       message.textContent = error.message;
       return;
     }
 
-    photoList.innerHTML = data.length
-      ? data.map(photo => `
+photoList.innerHTML = data.length
+      ? data.map((photo, index) => `
           <div class="gallery-admin-photo">
             <img src="${photo.image_url}" alt="Gallery photo">
+
+            <div class="gallery-order-controls">
+              <button data-move-up="${photo.id}" ${index === 0 ? 'disabled' : ''}>↑</button>
+              <button data-move-down="${photo.id}" ${index === data.length - 1 ? 'disabled' : ''}>↓</button>
+            </div>
+
             <button data-delete-photo="${photo.id}">DELETE</button>
           </div>
         `).join('')
       : '<p class="admin-muted">No photos in this subcategory yet.</p>';
 
+        photoList.querySelectorAll('[data-move-up], [data-move-down]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const photoId = button.dataset.moveUp || button.dataset.moveDown;
+        const index = data.findIndex(p => String(p.id) === photoId);
+
+        if (index === -1) return;
+
+        const newIndex = button.dataset.moveUp ? index - 1 : index + 1;
+
+        if (newIndex < 0 || newIndex >= data.length) return;
+
+        const reordered = [...data];
+        [reordered[index], reordered[newIndex]] =
+          [reordered[newIndex], reordered[index]];
+
+        message.textContent = 'Saving photo order...';
+
+        for (let i = 0; i < reordered.length; i++) {
+          const { error: orderError } = await supabase
+            .from('gallery_items')
+            .update({ sort_order: i })
+            .eq('id', reordered[i].id);
+
+          if (orderError) {
+            message.textContent = orderError.message;
+            return;
+          }
+        }
+
+        message.textContent = 'Photo order updated!';
+        await loadPhotos();
+      });
+    });
     photoList.querySelectorAll('[data-delete-photo]').forEach(button => {
       button.addEventListener('click', async () => {
         if (!confirm('Delete this photo?')) return;
