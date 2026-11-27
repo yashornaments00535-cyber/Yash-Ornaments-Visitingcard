@@ -165,7 +165,18 @@ async function loadGalleryManager() {
       <p id="galleryMessage" class="admin-muted"></p>
     </div>
 
-    <div id="galleryPhotoList"></div>
+<div class="gallery-bulk-actions">
+  <label>
+    <input type="checkbox" id="selectAllGalleryPhotos">
+    Select All
+  </label>
+
+  <button id="deleteSelectedGalleryPhotos" disabled>
+    DELETE SELECTED
+  </button>
+</div>
+
+<div id="galleryPhotoList"></div>
   `;
 
   const categorySelect = document.querySelector('#galleryCategory');
@@ -224,18 +235,94 @@ async function loadGalleryManager() {
       .from('gallery_items')
       .select('*')
       .eq('subcategory_id', subcategoryId)
-.order('sort_order', { ascending: true })
-.order('created_at', { ascending: true });
+      .order('sort_order', { ascending: true })
+      .order('created_at', { ascending: true });
 
     if (error) {
       message.textContent = error.message;
       return;
     }
 
-photoList.innerHTML = data.length
+    const selectAll = document.querySelector('#selectAllGalleryPhotos');
+    const deleteSelected = document.querySelector('#deleteSelectedGalleryPhotos');
+
+    selectAll.checked = false;
+    deleteSelected.disabled = true;
+
+    selectAll.onchange = () => {
+      photoList.querySelectorAll('[data-select-photo]').forEach(checkbox => {
+        checkbox.checked = selectAll.checked;
+      });
+
+      deleteSelected.disabled =
+        !photoList.querySelector('[data-select-photo]:checked');
+    };
+
+    photoList.onchange = (event) => {
+      if (!event.target.matches('[data-select-photo]')) return;
+
+      const checkboxes = [...photoList.querySelectorAll('[data-select-photo]')];
+
+      selectAll.checked = checkboxes.length > 0 &&
+        checkboxes.every(checkbox => checkbox.checked);
+
+      deleteSelected.disabled =
+        !checkboxes.some(checkbox => checkbox.checked);
+    };
+
+    deleteSelected.onclick = async () => {
+      const selectedIds = [...photoList.querySelectorAll('[data-select-photo]:checked')]
+        .map(checkbox => checkbox.dataset.selectPhoto);
+
+      if (!selectedIds.length) return;
+
+      if (!confirm(`Delete ${selectedIds.length} selected photos?`)) return;
+
+      deleteSelected.disabled = true;
+      message.textContent = 'Deleting selected photos...';
+
+      for (const id of selectedIds) {
+        const photo = data.find(p => String(p.id) === id);
+        if (!photo) continue;
+
+        const path = decodeURIComponent(
+          new URL(photo.image_url).pathname.split('/yash-gallery/')[1]
+        );
+
+        const { error: storageError } = await supabase.storage
+          .from('yash-gallery')
+          .remove([path]);
+
+        if (storageError) {
+          message.textContent = storageError.message;
+          deleteSelected.disabled = false;
+          return;
+        }
+
+        const { error: deleteError } = await supabase
+          .from('gallery_items')
+          .delete()
+          .eq('id', id);
+
+        if (deleteError) {
+          message.textContent = deleteError.message;
+          deleteSelected.disabled = false;
+          return;
+        }
+      }
+
+      message.textContent = 'Selected photos deleted successfully!';
+      await loadPhotos();
+    };
+
+    photoList.innerHTML = data.length
       ? data.map((photo, index) => `
           <div class="gallery-admin-photo">
             <img src="${photo.image_url}" alt="Gallery photo">
+            <label>
+  <input type="checkbox" data-select-photo="${photo.id}">
+  Select Photo
+</label>
 
             <div class="gallery-order-controls">
               <button data-move-up="${photo.id}" ${index === 0 ? 'disabled' : ''}>↑</button>
@@ -349,11 +436,11 @@ photoList.innerHTML = data.length
 
       const { error: insertError } = await supabase
         .from('gallery_items')
-        .insert({
-          subcategory_id: Number(subcategoryId),
-          image_url: publicData.publicUrl,
-          sort_order: 0
-        });
+.insert({
+  subcategory_id: Number(subcategoryId),
+  image_url: publicData.publicUrl,
+  sort_order: Date.now()
+});
 
       if (insertError) {
         message.textContent = insertError.message;
