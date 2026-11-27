@@ -7,11 +7,11 @@ export const card = {
   description: 'Gold jewellery manufacturing with custom designs, refined craftsmanship and attention to detail.',
   note: 'WHOLESALE ORDERS • SINGLE PIECE ORDERS ACCEPTED',
   address: '1400, Deyadi ni Pole, Near Bala Hanumanji Temple, Astodia Road, Manekchowk, Ahmedabad – 380001',
+  address: '1400, Deyadi ni Pole, Near Bala Hanumanji Temple, Astodia Road, Manekchowk – 380001',
   mapUrl: 'https://maps.google.com/?q=Yash+Ornaments+Manekchowk+Ahmedabad',
   instagram: 'https://www.instagram.com/',
-  facebook:  https://www.facebook.com/share/19sd8hdAVv/',
-  whatsapp: 'https://wa.me/916355548245',
-  
+  facebook: 'https://www.facebook.com/share/19sd8hdAVv/',
+  whatsapp: 'https://wa.me/916355548245',  
   contacts: [
   { title: 'Order Inquiry', subtitle: 'Direct contact', phone: '6355548245', whatsapp: '916355548245' },
   { title: 'Help & Support', subtitle: 'General enquiries & assistance', phone: '9664856004', whatsapp: '919664856004' },
