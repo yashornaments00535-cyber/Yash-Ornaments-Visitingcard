@@ -177,6 +177,10 @@ async function loadGalleryManager() {
 </div>
 
 <div id="galleryPhotoList"></div>
+<div id="galleryImagePreview" class="gallery-image-preview">
+  <button id="closeGalleryPreview">✕</button>
+  <img id="galleryPreviewImage" src="" alt="Large gallery preview">
+</div>
   `;
 
   const categorySelect = document.querySelector('#galleryCategory');
@@ -399,6 +403,30 @@ async function loadGalleryManager() {
         await loadPhotos();
       });
     });
+    const previewBox = document.querySelector('#galleryImagePreview');
+    const previewImage = document.querySelector('#galleryPreviewImage');
+    const closePreview = document.querySelector('#closeGalleryPreview');
+
+    photoList.querySelectorAll('.gallery-admin-photo img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+
+      img.addEventListener('click', () => {
+        previewImage.src = img.src;
+        previewBox.classList.add('active');
+      });
+    });
+
+    closePreview.onclick = () => {
+      previewBox.classList.remove('active');
+      previewImage.src = '';
+    };
+
+    previewBox.onclick = (event) => {
+      if (event.target === previewBox) {
+        previewBox.classList.remove('active');
+        previewImage.src = '';
+      }
+    };
   }
 
   document.querySelector('#uploadGalleryButton').addEventListener('click', async () => {
